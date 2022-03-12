@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #151D3B;
+  font-family: 'Montserrat', sans-serif;
+}
+
+p, a {
+  color: white
+}
+
+/* Start */
+.connect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+
+  & .link {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.connected .playlists .item {
+
+  & .playlistInfo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    padding: 10px;
+  }
+
+  & .cover {
+    width: 100px;
+    height: 100px;
+  }
+
+  & .name {
+    margin-left: 20px;
+  }
+
+  & .downloadPlaylist {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+  }
+
+  & .tracks {
+    margin: 10px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    & .track {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px;
+      position: relative;
+
+      & .download {
+        position: absolute;
+        right: 10px;
+        cursor: pointer;
+        z-index: 100000;
+
+        &::before {
+          content: url("./assets/download.svg");
+        }
+
+        &[data-state="dl"]::after {
+          content: "";
+          position: absolute;
+          left: -25px;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          border: 2px solid;
+          border-color: #fff transparent #fff transparent;
+          animation: loadCircle 1.2s linear infinite;
+        }
+      }
+    }
+  }
+}
+
+@keyframes loadCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .connected .playlists .item .cover {
+    width: 50px;
+    height: 50px;
+  }
+
+  .connected .playlists .item .tracks .track {
+    padding: 5px;
+  }
+}
