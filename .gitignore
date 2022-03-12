@@ -2,5 +2,6 @@
 /.parcel-cache
 /.idea
 /src/download
+/public/dist
 
 yarn.lock
