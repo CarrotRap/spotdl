@@ -20,7 +20,20 @@
             <a @click="openConfirm" class="link">Cliquer ici pour vous connecter</a>
         </div>
         <div class="connected" v-else>
+            <div class="search">
+                <p class="title">Recherche</p>
+                <input class="inputSearch" type="text" ref="search">
+                <div class="tracks">
+                    <div class="track" v-for="track in searchTracks">
+                        <img class="cover" :src="(track.album.images[1]) ? track.album.images[1].url : track.album.images[0].url">
+                        <p class="name">{{ track.name }} - {{ getArtist(track) }}</p>
+                        <a class="download" :id="track.id" data-state="notdl" @click="(e) => download(track, e)"></a>
+                    </div>
+                </div>
+            </div>
+            <hr />
             <div class="playlists">
+                <p class="title">Vos playlists :</p>
                 <div class="item" v-for="playlist in playlists">
                     <div class="playlistInfo" @click="() => develop(playlist)">
                         <img class="cover" :src="(playlist.images[1]) ? playlist.images[1].url : playlist.images[0].url" >
@@ -39,6 +52,7 @@
                 </div>
             </div>
         </div>
+        <a class="github" href="https://github.com/Kairrot/spotdl">GITHUB</a>
     </div>
 </body>
 </html>

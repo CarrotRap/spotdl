@@ -7,6 +7,7 @@ Vue.createApp({
             playlists: [],
             playlistOpen: null,
             trackPlaylistOpen: [],
+            searchTracks: [],
         }
     },
     methods: {
@@ -62,6 +63,26 @@ Vue.createApp({
                 }
             }).then(res => res.json()).then(data => {
                 this.playlists = data.items
+            })
+
+            this.$refs.search.addEventListener('input', e => {
+                const value = e.target.value;
+                setTimeout(() => {
+                    if(value === this.$refs.search.value) {
+                        if(value !== '') {
+                            fetch('https://api.spotify.com/v1/search?type=track&limit=10&q=' + value,{
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': 'Bearer ' + accessToken
+                                }
+                            }).then(res => res.json()).then(data => {
+                                this.searchTracks = data.tracks.items
+                            })
+                        } else {
+                            this.searchTracks = []
+                        }
+                    }
+                }, 500)
             })
         }
     }
