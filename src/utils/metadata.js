@@ -1,4 +1,3 @@
-const NodeID3 = require('node-id3')
 const { exec } = require('child_process')
 const fs = require('fs')
 

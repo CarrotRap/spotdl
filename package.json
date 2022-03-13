@@ -2,9 +2,8 @@
   "dependencies": {
     "axios": "^0.26.0",
     "express": "^4.17.3",
-    "ffmetadata": "^1.7.0",
     "http-proxy-middleware": "^2.0.3",
-    "node-id3": "^0.2.3",
+    "parcel-bundler": "^1.12.5",
     "yt-search": "^2.10.3",
     "ytdl-core": "^4.10.1"
   },

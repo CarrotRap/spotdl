@@ -1,8 +1,8 @@
 const express = require('express');
+const Bundler = require('parcel-bundler');
 const router = express.Router();
 
-router.get('/*', (req,res) => {
-    res.sendFile(global.dirname + '/public/dist')
-})
+const bundler = new Bundler(global.dirname + '/src/website/index.html', { cache: false });
+router.use(bundler.middleware())
 
 module.exports = router;

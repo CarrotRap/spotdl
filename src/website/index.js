@@ -15,7 +15,7 @@ Vue.createApp({
           url += '?response_type=token';
           url += '&client_id=' + encodeURIComponent('e3a1001be5634dd6b0d6bd5cdca44e57');
           url += '&scope=' + encodeURIComponent('playlist-read-private');
-          url += '&redirect_uri=' + encodeURIComponent('http://localhost:1234');
+          url += '&redirect_uri=' + encodeURIComponent(window.location.origin);
           window.location.replace(url)
         },
         getArtist(track) {
@@ -41,7 +41,6 @@ Vue.createApp({
             }
         },
         download(track, e) {
-            console.log(e)
             e.target.setAttribute('data-state', 'dl')
             fetch('/api/song', {headers: {id: track.id}}).then(res => res.arrayBuffer()).then(buffer => {
                 e.target.setAttribute('data-state', 'isdl')
